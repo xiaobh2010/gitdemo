@@ -3,7 +3,8 @@ git使用教程
 
 
 
-1 git
+---------------------------1------------------------------ 
+git
 
 什么是仓库？
 
@@ -21,7 +22,8 @@ git使用教程
 
 --------------------------------------------------------------------
 
-2 git常用命令
+-------------------------------2--------------------------------- 
+git常用命令
 远程仓库存储位置
 --github
 --gitlab
@@ -81,7 +83,8 @@ git reset --head HEAD
 git rm def.txt
 
 
-3 远程仓库和本地仓库建立链接
+--------------------------------3----------------------------------- 
+远程仓库和本地仓库建立链接
 远程仓库github （svn的中央服务器是东西最全的，github所有服务器都是平等的）
 进入自己的账号首页
 创建第一个项目
@@ -98,6 +101,26 @@ git pull origin master
 git remote add origin https://github.com/xiaobh2010/gitdemo.git     （https的地址）
 
 
+------------------------4------------------------------------- 
+使用SSH进行上传提交更新时需要公钥生成获取pubkey
+ssh-keygen -t rsa -b 4096 -C "youremail"
+生成的pubkey默认位置/home/tarena/.ssh/目录下
+打开id_rsa.pub 复制内容
+在github中settings中SSH and GPG key中添加SSH key
+添加内容为上述的复制内容
+（报错 sign_and_send_pubkey:...
+  解决方法：运行ssh-add
+）
+
+从远程仓库同步到本地仓库
+git pull origin master    origin是主机名称    master是分支名称
+
+从本地仓库推送到远程仓库
+git push origin master
+
+git add xxx
+git commit -m "xxxx"    分号里面是注释内容可以随意添加
+（添加的文件需要提交到本地仓库才能推送到远程仓库）
 
 
 
