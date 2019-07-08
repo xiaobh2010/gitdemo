@@ -60,8 +60,8 @@ eg.git commit -m "add abc.txt"
 **** -m "注释内容"****
 
 8 上述命令报错
-@tedu:~/gitdemo$ git config --global user.email "545756210@qq.com"
-@tedu:~/gitdemo$ git config --global user.name "xiaobohan"
+@tedu:~/gitdemo$ git config --global user.email "xxxxxxxx@qq.com"
+@tedu:~/gitdemo$ git config --global user.name "xxxxxxxx"
 
 9 查看当前仓库的状态
 git status
