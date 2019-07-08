@@ -1,6 +1,8 @@
 # gitdemo
 git使用教程
 
+
+
 1 git
 什么是仓库？
 版本库仓库：存储代码文件的地方
@@ -118,8 +120,6 @@ git rm def.txt
 进入自己的账号首页
 创建第一个项目
 
-tarena@tedu:~/gitdemo$ git remote add origin https://github.com/xiaobh2010/gitdemo.git
-tarena@tedu:~/gitdemo$ git remote rm origin
 git pull origin master
 
 先有本地仓库，后有远程仓库(远程仓库和本地仓库是不同节点上的仓库)
