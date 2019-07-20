@@ -69,10 +69,10 @@ git status
 10 查看修改文件的修改内容
 git diff abc.txt 
 
-通过查看日志文件，获取提交记录
+11 通过查看日志文件，获取提交记录
 git log
 
-回退到之前版本（根据git log的日志内容进行回退）
+12 回退到之前版本（根据git log的日志内容进行回退）
 git reset --hard HEAD^    （往前退几步‘^’符号就有几个）
 git reset --hard [commit_id]
 (注：commit_id只需要写前7位就可以了)
@@ -80,11 +80,22 @@ git log内容
 commit 34a3f2cebb7f9dcd54573972581fdf7a25c47258
 （只能回退 add到仓库并且commit提交了的代码）
 
-删除仓库中文件
+13 删除仓库中文件
 git rm def.txt
 git rm --cached [文件/目录]
 
---------------------------------3----------------------------------- 
+14 查看所有操作记录
+git reflog 
+eg:
+~/20190714/git$ git reflog
+34a3f2c HEAD@{0}: reset: moving to HEAD^
+2e4c044 HEAD@{1}: commit: mv file
+34a3f2c HEAD@{2}: commit: add README
+cd58ab8 HEAD@{3}: commit: add write.py
+（对操作记录的commit_id可以进行回退）
+git reset --hard 2e4c044
+
+#--------------------------------3----------------------------------- 
 远程仓库和本地仓库建立链接
 远程仓库github （svn的中央服务器是东西最全的，github所有服务器都是平等的）
 进入自己的账号首页
