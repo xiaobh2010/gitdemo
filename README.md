@@ -1,8 +1,5 @@
 # gitdemo
 git使用教程
-
-
-
 ---------------------------1------------------------------ 
 
 git
@@ -72,17 +69,20 @@ git status
 10 查看修改文件的修改内容
 git diff abc.txt 
 
-
 通过查看日志文件，获取提交记录
 git log
 
-回退到上一个版本
-git reset --head HEAD
+回退到之前版本（根据git log的日志内容进行回退）
+git reset --hard HEAD^    （往前退几步‘^’符号就有几个）
+git reset --hard [commit_id]
+(注：commit_id只需要写前7位就可以了)
+git log内容
+commit 34a3f2cebb7f9dcd54573972581fdf7a25c47258
 （只能回退 add到仓库并且commit提交了的代码）
 
 删除仓库中文件
 git rm def.txt
-
+git rm --cached [文件/目录]
 
 --------------------------------3----------------------------------- 
 远程仓库和本地仓库建立链接
@@ -101,7 +101,6 @@ git pull origin master
 获取远程仓库，与本地仓库之间建立链接关系
 git remote add origin https://github.com/xiaobh2010/gitdemo.git     （https的地址）
 
-
 ------------------------4------------------------------------- 
 使用SSH进行上传提交更新时需要公钥生成获取pubkey
 ssh-keygen -t rsa -b 4096 -C "youremail"
@@ -110,8 +109,7 @@ ssh-keygen -t rsa -b 4096 -C "youremail"
 在github中settings中SSH and GPG key中添加SSH key
 添加内容为上述的复制内容
 （报错 sign_and_send_pubkey:...
-  解决方法：运行ssh-add
-）
+  解决方法：运行ssh-add）
 
 从远程仓库同步到本地仓库
 git pull origin master    origin是主机名称    master是分支名称
@@ -142,6 +140,10 @@ tarena@tedu:~/gitdemo$ git branch      （两个分支，现在处于master分�
 * master        
 
 2 切换分支
+分支查看
+git branch -a
+* 表示正在哪个分支上工作
+
 git checkout 分支名称
 提示出已经切换到xxx分支
 
@@ -196,7 +198,78 @@ git reset --hard 版本号
 
 标签应该在对文件进行了修改，添加和提交之后加上，再使用git show v版本号就能看到修改信息
 
+标签查看
+git tag
 
+添加标签
+git tag [t_name] [commit_id] -m '注释内容'
+git tag可以查看标签
+
+查看标签的详细信息
+git show [tag] 
+
+给之前版本打标签
+git tag v0.9 5a57ab5 -m 'add tag' （根据git log中记录的commit_id来打标签）
+
+删除标签
+git tag -d v0.9
+
+查看详细标签信息
+git show [tag]
+
+标签跳转
+git reset --hard [tag]
+
+删除标签
+git tag -d [tag]
+
+5 保存工作区
+工作区保存（对文件进行修改）
+查看保存的工作区
+git stash list
+
+保存工作区
+git stash save [message]
+
+应用工作区
+git stash apply stash@{n}  
+
+删除工作区
+git stash drop stash@{n}  （删除指定工作区）
+git stash clear (删除所有工作区)
+
+eg:
+tarena@tedu:~/20190714/git$ git stash list
+tarena@tedu:~/20190714/git$ l
+exec.py  README.md  test/
+tarena@tedu:~/20190714/git$ vi exec.py 
+tarena@tedu:~/20190714/git$ git stash save 'one'
+Saved working directory and index state On master: one
+HEAD 现在位于 2e4c044 mv file
+tarena@tedu:~/20190714/git$ git stash list
+stash@{0}: On master: one
+tarena@tedu:~/20190714/git$ vi exec.py 
+tarena@tedu:~/20190714/git$ git stash save 'two'
+Saved working directory and index state On master: two
+HEAD 现在位于 2e4c044 mv file
+tarena@tedu:~/20190714/git$ git stash list
+stash@{0}: On master: two
+stash@{1}: On master: one
+tarena@tedu:~/20190714/git$ git stash apply stash@{1}
+位于分支 master
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git checkout -- <文件>..." 丢弃工作区的改动）
+
+	修改：     exec.py
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+tarena@tedu:~/20190714/git$ git add *
+tarena@tedu:~/20190714/git$ l
+exec.py  README.md  test/
+tarena@tedu:~/20190714/git$ git commit -m 'stash add'
+[master 9bde97a] stash add
+ 1 file changed, 1 insertion(+)
 
 
 
